@@ -1,28 +1,45 @@
-import { Text, View, Image, StyleSheet, Dimensions, useWindowDimensions, ScrollView } from "react-native";
-import PrimaryButton from "../components/ui/PrimaryButton";
+// component that is shown when the game is over
 
+// imports from react, react native and expo, etc
+import { Text, View, Image, StyleSheet, Dimensions, useWindowDimensions, ScrollView } from "react-native";
+
+// import custom components created by me
+import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
 import Colors from "../constants/colors";
 
+// method exported for use throughout the app
+// roundsNumber: how many rounds it took to guess the user's number
+// userNumber: the number the user asked the device to guess
+// onStartNewGame: restarts a new game
 function GameOverScreen({roundsNumber, userNumber, onStartNewGame}) {
+  // get the device dimensions and re-evaluate when the orientation changes
   const {width, height} = useWindowDimensions();
 
+  // initial size of the image
   let imageSize = 300;
 
+  // if the width is smaller than 380, reset image size
   if (width < 380) {
     imageSize = 150;
   }
 
+  // if the width is smaller than 400, reset image size
   if (height < 400) {
     imageSize = 80
   }
 
+  // object to pass to image component 
   const imageStyle= {
     width: imageSize,
     height: imageSize,
     borderRadius: imageSize / 2
   }
 
+  // style prop can take an array and pass multiple values
+  // i.e. we're changing the size depending on the 
+  // screen dimension of the image and passing 
+  // it as a second prop 
   return (
     <ScrollView style={styles.screen}>
     <View style={styles.rootContainer}>
@@ -43,16 +60,13 @@ function GameOverScreen({roundsNumber, userNumber, onStartNewGame}) {
   );
 }
 
+// export so we can use it throughout the app
 export default GameOverScreen;
 
-const deviceWidth = Dimensions.get('window').width;
-
+// style sheet so we can customize and make things pretty!
 const styles = StyleSheet.create({
   imageContainer: {
     overflow: "hidden",
-    // borderRadius: 150,
-    // width: deviceWidth < 300 ? 150 : 300,
-    // height: deviceWidth < 300 ? 150 : 300,
     borderWidth: 3,
     borderColor: Colors.primary800,
     margin: 36,

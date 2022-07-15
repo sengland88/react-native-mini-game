@@ -1,7 +1,13 @@
+// component for displaying the device's guess
+
+// imports from react, react native and expo, etc
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 
+// import custom components created by me
 import Colors from "../../constants/colors";
 
+// method exported method to be used throughout the app
+// prop is children which mean anything that is passed into middle of the Element Tags
 function NumberContainer({children}) {
   return (
     <View style={styles.container}>
@@ -10,10 +16,13 @@ function NumberContainer({children}) {
   );
 }
 
+// export so we can use it throughout the app
 export default NumberContainer;
 
+// get the device with using React Native
 const deviceWidth = Dimensions.get('window').width;
 
+// style sheet so we can customize and make things pretty!
 const styles = StyleSheet.create({
     container: {
         borderWidth: 4, 
